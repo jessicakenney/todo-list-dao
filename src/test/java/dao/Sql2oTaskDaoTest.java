@@ -60,15 +60,15 @@ public class Sql2oTaskDaoTest {
         assertEquals(0,number );
     }
 
-    @Test
-    public void update_correctlyUpdates () {
-        Task task = new Task("mow the lawn");
-        taskDao.add(task);
-
-        taskDao.update(task.getId(),"take a nap");
-        Task updatedTask = taskDao.findById(task.getId());
-        assertEquals("take a nap",updatedTask.getDescription());
-    }
+//    @Test
+//    public void update_correctlyUpdates () {
+//        Task task = new Task("mow the lawn");
+//        taskDao.add(task);
+//
+//        taskDao.update(task.getId(),"take a nap");
+//        Task updatedTask = taskDao.findById(task.getId());
+//        assertEquals("take a nap",updatedTask.getDescription());
+//    }
 
     @Test
     public void deleteById_deletesVeryWell () {
