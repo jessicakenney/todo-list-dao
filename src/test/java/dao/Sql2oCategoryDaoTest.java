@@ -25,7 +25,8 @@ public class Sql2oCategoryDaoTest {
 
     @Before
     public void setUp() throws Exception {
-        String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+        //String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+        String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from '/Users/momma/Desktop/todo-list-dao/src/main/resources/db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString, "", "");
         categoryDao = new Sql2oCategoryDao(sql2o);
         taskDao = new Sql2oTaskDao(sql2o);

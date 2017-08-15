@@ -6,21 +6,24 @@ import java.util.ArrayList;
 public class Task {
 
     private String description;
-    //private static ArrayList<Task> instances = new ArrayList<>();
     private boolean completed;
     private LocalDateTime createdAt;
     private int id;
+    private int categoryId;
 
-    public Task(String description){
+    public Task(String description, int categoryId){
         this.description = description;
         this.completed = false;
         this.createdAt = LocalDateTime.now();
-        //instances.add(this);
-        //this.id = instances.size();
+        this.categoryId = categoryId;
     }
 
     public String getDescription() {
         return description;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
     }
 
     public boolean getCompleted(){

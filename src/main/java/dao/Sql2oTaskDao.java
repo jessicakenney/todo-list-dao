@@ -20,10 +20,14 @@ public class Sql2oTaskDao implements TaskDao {
 
     @Override
     public void add(Task task) {
-        String sql = "INSERT INTO tasks (description) VALUES (:description)"; //raw sql
+        String sql = "INSERT INTO tasks (description,categoryId) VALUES (:description, :categoryId)"; //raw sql
         try(Connection con = sql2o.open()){ //try to open a connection
             int id = (int) con.createQuery(sql) //make a new variable
-                    .bind(task) //map my argument onto the query so we can use information from it
+                    .addParameter("description", task.getDescription())
+                    .addParameter("categoryId", task.getCategoryId())
+                    .addColumnMapping("DESCRIPTION", "description")
+                    .addColumnMapping("CATEGORYID", "categoryId")
+                    .addColumnMapping("CREATEDAT", "createdAt")
                     .executeUpdate() //run it all
                     .getKey(); //int id is now the row number (row “key”) of db
             task.setId(id); //update object to set id now from database

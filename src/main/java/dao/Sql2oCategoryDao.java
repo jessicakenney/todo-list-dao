@@ -24,7 +24,7 @@ public class Sql2oCategoryDao implements CategoryDao {
 
     @Override
     public void add(Category category) {
-        String sql = "INSERT INTO tasks (description) VALUES (:description)"; //raw sql
+        String sql = "INSERT INTO categories (name) VALUES (:name)"; //raw sql
         try(Connection con = sql2o.open()){ //try to open a connection
             int id = (int) con.createQuery(sql) //make a new variable
                     .bind(category) //map my argument onto the query so we can use information from it
@@ -55,7 +55,7 @@ public class Sql2oCategoryDao implements CategoryDao {
 
     @Override
     public void update(int id, String newName){
-        String sql = "UPDATE tasks SET name = :name WHERE id=:id";
+        String sql = "UPDATE categories SET name = :name WHERE id=:id";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
                     .addParameter("name", newName)

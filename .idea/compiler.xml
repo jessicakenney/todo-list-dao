@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="Java-Week3-ToDoList_main" target="1.8" />
       <module name="Java-Week3-ToDoList_test" target="1.8" />
+      <module name="todo-list-dao_main" target="1.8" />
+      <module name="todo-list-dao_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
