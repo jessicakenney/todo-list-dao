@@ -38,10 +38,6 @@ public class Task {
         return id;
     }
 
-    public void update(String content) {
-        this.description = content;
-    }
-
     public void setDescription(String description) {
         this.description = description;
     }

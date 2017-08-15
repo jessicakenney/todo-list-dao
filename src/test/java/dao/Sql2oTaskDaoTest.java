@@ -15,14 +15,14 @@ public class Sql2oTaskDaoTest {
 
     private Sql2oTaskDao taskDao; //ignore me for now. We'll create this soon.
     private Connection conn; //must be sql2o class conn
+
     public Task setupNewTask() {
         return new Task("mow the lawn",1);
     }
 
     @Before
     public void setUp() throws Exception {
-        //String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-        String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from '/Users/momma/Desktop/todo-list-dao/src/main/resources/db/create.sql'";
+        String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString, "", "");
         taskDao = new Sql2oTaskDao(sql2o); //ignore me for now
 
@@ -64,15 +64,14 @@ public class Sql2oTaskDaoTest {
         assertEquals(0,number );
     }
 
-//    @Test
-//    public void update_correctlyUpdates () {
-            //Task task = setupNewTask();
-//        taskDao.add(task);
-//
-//        taskDao.update(task.getId(),"take a nap");
-//        Task updatedTask = taskDao.findById(task.getId());
-//        assertEquals("take a nap",updatedTask.getDescription());
-//    }
+    @Test
+    public void update_correctlyUpdates () {
+        Task task = setupNewTask();
+        taskDao.add(task);
+        taskDao.update(task.getId(),"take a nap", 1);
+        Task updatedTask = taskDao.findById(task.getId());
+        assertEquals("take a nap",updatedTask.getDescription());
+    }
 
     @Test
     public void deleteById_deletesVeryWell () {
@@ -92,5 +91,12 @@ public class Sql2oTaskDaoTest {
         assertEquals(0, taskDao.getAll().size());
     }
 
+    @Test
+    public void categoryIdIsReturnedCorrectly() throws Exception {
+        Task task = setupNewTask();
+        int originalCatId = task.getCategoryId();
+        taskDao.add(task);
+        assertEquals(originalCatId, taskDao.findById(task.getId()).getCategoryId());
+    }
 
 }
