@@ -1,0 +1,19 @@
+{{#partial "content"}}
+
+    <h1> Categories: </h1>
+
+    {{#if categories}}
+        {{#each categories }}
+         <p>Current Category:</p>
+         <p>{{ name }} <a href="/categories/{{id}}/tasks">show tasks...</a></p>
+        {{/each}}
+    {{else}}
+         <p>No categories!</p>
+    {{/if}}
+
+
+
+{{/partial}}
+
+{{> layout.hbs}}
+

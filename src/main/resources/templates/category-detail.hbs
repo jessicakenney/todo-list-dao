@@ -1,0 +1,11 @@
+{{#partial "content"}}
+
+    <h3>{{ category.name }}</h3>
+    <br>
+        <a href="/categories/{{ category.id }}/update">Edit this category</a><br>
+        <a href="/categories/{{ category.id }}/delete">DELETE this category(no undo)</a>
+    </p>
+
+{{/partial}}
+
+{{> layout.hbs}}

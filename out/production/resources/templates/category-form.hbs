@@ -1,13 +1,13 @@
 {{#partial "content"}}
 
     {{#if editCategory}}
-        <h3>Edit Category</h3>
+        <h1>Edit Category</h1>
         <form action="/categories/{{editCategory.id}}/update" method="post">
-            <label for="name">Edit cateogory name</label>
+            <label for="name">Edit this cateogories name</label>
             <input id="name" name="name" type="text" value="{{editCategory.name}}">
 
     {{else}}
-    <h3>Add a new Category</h3>
+    <h1>Add a new Category</h1>
 
     <form action="/categories/new" method="post">
         <label for="name">Category Name</label>

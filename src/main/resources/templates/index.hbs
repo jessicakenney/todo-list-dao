@@ -1,17 +1,27 @@
 {{#partial "content"}}
 
-    <h1> Categories: </h1>
+    <h1> Categories </h1>
 
     {{#if categories}}
         {{#each categories }}
-         <p>Current Category:</p>
-         <p>{{ name }} <a href="/categories/{{id}}/tasks">show tasks...</a></p>
+            <div class="col-md-4">
+            <div class = "well">
+                <h3>{{ name }} <small><em><a href="/categories/{{ id }}">...edit</a></em></small></h3>
+                <br>
+                <a href="/categories/{{ id }}/tasks">Show/Add tasks</a>
+                <br>
+            </div>
+            </div>
+
         {{/each}}
     {{else}}
          <p>No categories!</p>
     {{/if}}
 
-
+    <footer class="footer">
+        <p class="text-muted"><a href="/categories/delete">DELETE ALL Categories</a></p>
+        </div>
+    </footer>
 
 {{/partial}}
 

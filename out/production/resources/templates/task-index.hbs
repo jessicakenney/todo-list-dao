@@ -1,0 +1,18 @@
+{{#partial "content"}}
+
+
+    {{#if tasks}}
+        {{#each tasks }}
+            <p>Current Task:</p>
+            <p>{{ description }} <a href="/categories/{{ id }}/tasks">edit...</a></p>
+        {{/each}}
+
+    {{else}}
+        <p>No tasks!</p>
+    {{/if}}
+    <a href="categories/{{ id }}/tasks/new">Add a New Task</a></li>
+
+{{/partial}}
+
+{{> layout.hbs}}
+

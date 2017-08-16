@@ -54,12 +54,51 @@ public class App {
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //get:show individual Category
+        get("/categories/:category_id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfCategory = Integer.parseInt(req.params("category_id"));
+            Category foundCategory = categoryDao.findById(idOfCategory);
+            model.put("category", foundCategory);
+            return new ModelAndView(model, "category-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: update and individual Category
+        get("/categories/:category_id/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfCategoryToEdit = Integer.parseInt(req.params("category_id"));
+            Category editCategory = categoryDao.findById(idOfCategoryToEdit);
+            model.put("editCategory", editCategory);
+            return new ModelAndView(model, "category-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //post: process individual category edit
+        post("/categories/:category_id/update", (req, res) -> { //URL to make new task on POST route
+            Map<String, Object> model = new HashMap<>();
+            String newName = req.queryParams("name");
+            int categoryId = Integer.parseInt(req.params("category_id"));
+            categoryDao.findById(categoryId);
+            categoryDao.update(categoryId,newName);
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: delete an Individual category
+        get("/categories/:category_id/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfCategoryToDelete = Integer.parseInt(req.params("category_id")); //pull id - must match route segment
+            categoryDao.findById(idOfCategoryToDelete); //use it to find task
+            categoryDao.deleteById(idOfCategoryToDelete);
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
 
         //get: show new task form
         get("/categories/:category_id/tasks", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int categoryId = Integer.parseInt(req.params("category_id"));
             model.put("categoryId",categoryId);
+            Category category = categoryDao.findById(categoryId);
+            String categoryName = category.getName();
+            model.put("categoryName",categoryName);
             List<Task>categoryTasks = new ArrayList<>();
             List<Task> tasks = taskDao.getAll();
             for ( Task task : tasks) {

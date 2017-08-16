@@ -9,7 +9,7 @@
         </form>
     {{else}}
 
-        <h2>{{ categoryName }}</h2>
+
     {{#if tasks}}
         {{#each tasks }}
                 <li>{{ description }} <a href="/categories/{{ categoryId }}/tasks/{{ id }}">edit...</a></li>
@@ -19,9 +19,11 @@
             <p>No tasks!</p>
     {{/if}}
 
-        <br>
+
+    <h1>Add a new Task!</h1>
+
     <form action="/categories/{{ categoryId }}/tasks" method="post">
-        <label for="description"></label>
+        <label for="description">Task Description</label>
         <input id="description" name="description" type="text">
         <button type="submit" class="btn btn-default">Add task</button>
     </form>
